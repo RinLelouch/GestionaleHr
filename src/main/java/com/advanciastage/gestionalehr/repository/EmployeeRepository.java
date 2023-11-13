@@ -47,15 +47,15 @@ public class EmployeeRepository {
 	}
 	}
 
-	public List<Employee> selectAllManagers() {
+	public List<String> selectAllManagers() {
 		EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
 		try {
 			entityManager.getTransaction().begin();
 
-			Query query = entityManager.createQuery("FROM Employee e JOIN Department d ON e.employeeId = d.managerId");
+			Query query = entityManager.createQuery("SELECT e.email FROM Employee e JOIN Department d ON e.employeeId = d.managerId");
 
 			@SuppressWarnings("unchecked")
-			List<Employee> employees = (List<Employee>) query.getResultList();
+			List<String> employees = (List<String>) query.getResultList();
 
 			return employees;
 		} finally {

@@ -20,11 +20,11 @@ public class Service {
 	}
 
 	public int checkStatus(Employee emp) {
-		List<Employee> managers=employeeRepo.selectAllManagers();
+		List<String> managers=employeeRepo.selectAllManagers();
 
 		if (emp.getJobId().equals("AD_PRES") || emp.getJobId().equals("AD_VP")) {
 			return 1;
-		} else if (managers.contains(emp)) {
+		} else if (managers.contains(emp.getEmail())) {
 			return 2;
 		}
 		return 3;

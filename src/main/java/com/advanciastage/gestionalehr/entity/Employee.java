@@ -1,6 +1,7 @@
 package com.advanciastage.gestionalehr.entity;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -143,4 +144,6 @@ public class Employee {
 	public void setDepartmentId(long departmentId) {
 		this.departmentId = departmentId;
 	}
+	
+
 }

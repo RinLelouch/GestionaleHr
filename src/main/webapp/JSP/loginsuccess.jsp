@@ -22,7 +22,7 @@
 			</form>
 		</c:if>
 
-		<c:if test="${ MEDIO == true}">
+		<c:if test="${MEDIO == true}">
 			<form action="/gestionalehr" method="post">
 				<input type="submit" value="Ricerca Dipendenti">
 			</form>
@@ -30,9 +30,9 @@
 		<form action="/gestionalehr" method="post">
 			<input type="submit" value="Dati Personali">
 		</form>
-<form action="/gestionalehr/Logout" method="get">
-						<input type="submit" value="Logout">
-					</form>
+		<form action="/gestionalehr/Logout" method="get">
+			<input type="submit" value="Logout">
+		</form>
 	</c:if>
 </body>
 </html>
