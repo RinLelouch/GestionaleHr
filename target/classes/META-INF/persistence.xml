@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence
+    xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+             http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+ version="2.1">
+    <persistence-unit name="PERSISTENCE">
+        <description> Hibernate JPA Configuration Example</description>
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>com.advanciastage.gestionalehr.entity.Region</class>
+            <class>com.advanciastage.gestionalehr.entity.Countrie</class>
+                <class>com.advanciastage.gestionalehr.entity.Department</class>
+                    <class>com.advanciastage.gestionalehr.entity.Employee</class>
+                        <class>com.advanciastage.gestionalehr.entity.Job</class>
+                            <class>com.advanciastage.gestionalehr.entity.JobHistory</class>
+                                <class>com.advanciastage.gestionalehr.entity.Location</class>
+        <!-- <properties>
+       <property name="jakarta.persistence.jdbc.driver" value="oracle.jdbc.driver.OracleDriver" />
+            <property name="jakarta.persistence.jdbc.url"
+    value="jdbc:oracle:thin:@localhost:1521/orcl" />
+            <property name="jakarta.persistence.jdbc.user" value="hr" />
+            <property name="jakarta.persistence.jdbc.password"
+    value="HR" />
+            <property name="hibernate.show_sql" value="true" />
+        </properties> -->
+    </persistence-unit>
+</persistence>
