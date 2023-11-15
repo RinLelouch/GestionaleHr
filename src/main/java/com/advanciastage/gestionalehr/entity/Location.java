@@ -22,7 +22,7 @@ public class Location {
 	}
 
 	public Location(long locationId, String streetAddress, String postalCode, String city, String stateProvince,
-			long countryId) {
+			String countryId) {
 		super();
 		this.locationId = locationId;
 		this.streetAddress = streetAddress;
@@ -37,7 +37,7 @@ public class Location {
 	@Column(name = "state_province")
 	private String stateProvince;
 	@Column(name = "country_id")
-	private long countryId;
+	private String countryId;
 
 	public long getLocationId() {
 		return locationId;
@@ -79,11 +79,11 @@ public class Location {
 		this.stateProvince = stateProvince;
 	}
 
-	public long getCountryId() {
+	public String getCountryId() {
 		return countryId;
 	}
 
-	public void setCountryId(long countryId) {
+	public void setCountryId(String countryId) {
 		this.countryId = countryId;
 	}
 }

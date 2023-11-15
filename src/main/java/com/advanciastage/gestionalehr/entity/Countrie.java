@@ -9,7 +9,7 @@ import javax.persistence.Table;
 @Table(name="COUNTRIES")
 public class Countrie {
  
-	public Countrie(long countryId, String countryName, long region_id) {
+	public Countrie(String countryId, String countryName, long region_id) {
 		super();
 		this.countryId = countryId;
 		this.countryName = countryName;
@@ -21,15 +21,15 @@ public class Countrie {
 	}
 	@Id
 	@Column(name="country_id")
-	private long countryId;
+	private String countryId;
 	@Column(name="country_name")
 	private String countryName;
 	@Column(name="region_id")
 	private long region_id;
-	public long getCountryId() {
+	public String getCountryId() {
 		return countryId;
 	}
-	public void setCountryId(long countryId) {
+	public void setCountryId(String countryId) {
 		this.countryId = countryId;
 	}
 	public String getCountryName() {

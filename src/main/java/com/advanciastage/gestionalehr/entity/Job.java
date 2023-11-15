@@ -10,7 +10,7 @@ import javax.persistence.Table;
 public class Job {
 	@Id
 	@Column(name = "job_id")
-	private long jobId;
+	private String jobId;
 	@Column(name = "job_title")
 	private String jobTitle;
 	@Column(name = "min_salary")
@@ -18,11 +18,11 @@ public class Job {
 	@Column(name = "max_salary")
 	private long maxSalary;
 
-	public long getJobId() {
+	public String getJobId() {
 		return jobId;
 	}
 
-	public void setJobId(long jobId) {
+	public void setJobId(String jobId) {
 		this.jobId = jobId;
 	}
 
@@ -31,7 +31,7 @@ public class Job {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Job(long jobId, String jobTitle, long minSalary, long maxSalary) {
+	public Job(String jobId, String jobTitle, long minSalary, long maxSalary) {
 		super();
 		this.jobId = jobId;
 		this.jobTitle = jobTitle;

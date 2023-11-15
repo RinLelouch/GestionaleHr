@@ -14,11 +14,11 @@
 	<c:if test="${autorizzato == true}">
 
 		<c:if test="${ALTO == true}">
-			<form action="/gestionalehr" method="post">
+			<form action="/gestionalehr/searchuserpage" method="post">
 				<input type="submit" value="Ricerca Dipendenti">
 			</form>
 			<form action="/gestionalehr" method="get">
-				<input type="submit" value="Ricerca Dipartimetni">
+				<input type="submit" value="Ricerca Dipartimenti">
 			</form>
 		</c:if>
 
