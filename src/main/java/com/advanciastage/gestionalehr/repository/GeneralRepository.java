@@ -1,5 +1,8 @@
 package com.advanciastage.gestionalehr.repository;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,7 +82,7 @@ public class GeneralRepository {
 
 	
 	
-	public List<EmployeeDTO> selectGeneric(Long id, String nome, String cognome, String email, String nomeDipartimento,String location, String jobTitle){
+	public List<EmployeeDTO> selectGeneric(Long id, String nome, String cognome, String email, String nomeDipartimento,String location, String jobTitle, String data){
 		
 		EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
 		try {
@@ -102,6 +105,8 @@ public class GeneralRepository {
 			sql = sql + " AND l.countryId LIKE '%" + location + "%'";
 		}if (!StringUtils.isNullOrEmpty(jobTitle)) {
 			sql = sql + " AND e.jobId LIKE '%" + jobTitle + "%'";
+		}if (!StringUtils.isNullOrEmpty(data)) {
+		sql= sql + " AND e.hireDate >TO_DATE('" + data+"','dd/MM/YYYY HH24:mi:ss')";
 		}
 		
 		 Query query = entityManager.createQuery(sql);

@@ -7,10 +7,57 @@ import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import com.advanciastage.gestionalehr.entity.Employee;
+import com.advanciastage.gestionalehr.entity.EmployeeDTO;
 import com.advanciastage.gestionalehr.util.JPAUtil;
 
 public class EmployeeRepository {
+	
+	public EmployeeDTO findByIdEmployeeDTO(Long id) {
+		EntityManager entityManager= JPAUtil.getEntityManagerFactory().createEntityManager();
+		try {
+			entityManager.getTransaction().begin();
+			Query query = entityManager.createQuery("SELECT e.employeeId,e.firstName,e.lastName,e.email,e.phoneNumber,e.salary,d.departmentName,m.firstName,j.jobTitle"
+					+ " FROM Employee e,Department d,Job j, Employee m"
+					+ " WHERE e.employeeId = :id"
+					+ " AND e.departmentId=d.departmentId"
+					+ " AND e.managerId=m.employeeId"
+					+ " AND e.jobId= j.jobId");
+			query.setParameter("id",id);
+			List<Object> resultQuery = query.getResultList();
+			EmployeeDTO employee = new EmployeeDTO((Object[]) resultQuery.get(0));
+			 entityManager.getTransaction().commit();
+	            return employee;
+		} catch(NoResultException e) {
+            return null;
+			
+		}finally {
+			entityManager.close();
+		}
+		
+	}
+	
 
+	public Employee findById(Long id) {
+		EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
+		try {
+			entityManager.getTransaction().begin();
+
+			Query query = entityManager.createQuery("FROM Employee e WHERE e.employeeId = :id");
+
+			query.setParameter("id", id);
+
+			 try {
+		            Employee employee = (Employee) query.getSingleResult();
+		            entityManager.getTransaction().commit();
+		            return employee;
+		        } catch (NoResultException e) {
+		            return null;
+		        }
+		} finally {
+			
+			entityManager.close();
+		}
+	}
 	public Employee findByEmail(String email) {
 		EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
 		try {

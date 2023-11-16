@@ -17,17 +17,17 @@
 			<form action="/gestionalehr/searchuserpage" method="post">
 				<input type="submit" value="Ricerca Dipendenti">
 			</form>
-			<form action="/gestionalehr" method="get">
+			<form action="/gestionalehr/searchdepartmentpage" method="get">
 				<input type="submit" value="Ricerca Dipartimenti">
 			</form>
 		</c:if>
 
 		<c:if test="${MEDIO == true}">
-			<form action="/gestionalehr" method="post">
+			<form action="/gestionalehr/searchuserpage" method="post">
 				<input type="submit" value="Ricerca Dipendenti">
 			</form>
 		</c:if>
-		<form action="/gestionalehr" method="post">
+		<form action="/gestionalehr/datipersonali" method="post">
 			<input type="submit" value="Dati Personali">
 		</form>
 		<form action="/gestionalehr/Logout" method="get">

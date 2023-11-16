@@ -1,6 +1,9 @@
 package com.advanciastage.gestionalehr.servlet;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -57,7 +60,17 @@ public class SearchUsers extends HttpServlet {
 		String nomeDipartimento = request.getParameter("nomeDipartimento");
 		String localita = request.getParameter("località");
 		String jobTitle = request.getParameter("jobTitle");
-		List<EmployeeDTO> listaRicercati=  generalRepo.selectGeneric(id, name, cognome, email, nomeDipartimento, localita, jobTitle);
+		String data = request.getParameter("data");
+		String formattedDate= "";
+		if(!data.isEmpty() || !data.isBlank()) {
+		DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	    LocalDate localDate = LocalDate.parse(data, inputFormatter);
+	    LocalDateTime localDateTime = localDate.atStartOfDay();
+
+	    DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+	     formattedDate = localDateTime.format(outputFormatter);
+	    }
+		List<EmployeeDTO> listaRicercati=  generalRepo.selectGeneric(id, name, cognome, email, nomeDipartimento, localita, jobTitle,formattedDate);
 		request.setAttribute("listaRicercati", listaRicercati);
 		request.getRequestDispatcher("/JSP/listadipendenti.jsp").forward(request, response);
 	}
