@@ -9,6 +9,9 @@
 </head>
 <body>
 	<form action="/gestionalehr/searchusers" method="post">
+	<c:if test="${autorizzato == true}">
+
+		<c:if test="${ALTO == true}">
 		<h2>Ricerca un Utente o più Utenti</h2>
 		<p>
 			Ricerca per id: <input type="text" name="id">
@@ -44,8 +47,54 @@
 		<p>
 			Ricerca per data assunzione: <input type="date" name="data">
 		</p>
-		<input type="submit" value="Ricerca">
-</form>
+		
+		</c:if>
+<c:if test="${MEDIO == true}">
+<h2>Ricerca un Utente o più Utenti</h2>
+		<p>
+			Ricerca per id: <input type="text" name="id">
+		</p>
+		<br />
+		<p>
+			Ricerca per nome: <input type="text" name="nome">
+		</p>
+		<br />
+		<p>
+			Ricerca per cognome: <input type="text" name="cognome">
+		</p>
+		<p>
+			Ricerca per email: <input type="text" name="email">
+		</p>
 
+		 <br /> <select name="jobTitle">
+			<option value="">Scegli il Job Title</option>
+			<c:forEach var="job" items="${jobs}">
+				<option value="${job.getJobId()}">${job.getJobTitle()}</option>
+			</c:forEach>
+		</select> <br />
+		<p>
+			Ricerca per data assunzione: <input type="date" name="data">
+		</p>
+</c:if>
+</c:if>
+<input type="submit" value="Ricerca">
+</form>
+<c:if test="${ALTO == true}">
+<form action="/gestionalehr/search">
+<label>
+<input type="radio" name="search" value="all">
+Cerca Tutti i Dipendenti
+</label>
+<label>
+<input type="radio" name="search" value="managers">
+Cerca Managers
+</label>
+<label>
+<input type="radio" name="search" value="dipendenti">
+Cerca solo i Dipendenti
+</label>
+<input type="submit" value="Ricerca">
+</form>
+</c:if>
 </body>
 </html>

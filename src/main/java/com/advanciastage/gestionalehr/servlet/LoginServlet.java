@@ -57,11 +57,13 @@ public class LoginServlet extends HttpServlet {
 		if (emp != null && emp instanceof Employee) {
 			
 			if (service.checkLogin(emp, password)) {
+				Long id = emp.getEmployeeId();
+				session.setAttribute("emp",emp);
 
-				request.setAttribute("employee", emp);
+				request.setAttribute("empId", id);
 				request.setAttribute("autorizzato", true);
 				session.setAttribute("autorizzato", true);
-				session.setAttribute("employee", emp);
+				session.setAttribute("empId", id);
 
 				if (service.checkStatus(emp) == 1) {
 					request.setAttribute("ALTO", true);

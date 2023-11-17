@@ -54,6 +54,7 @@ public class SearchUsers extends HttpServlet {
 		if(!request.getParameter("id").isEmpty() || !request.getParameter("id").isBlank() ) {
 		id = Long.parseLong(request.getParameter("id"));
 		}
+		Long empId = (Long) session.getAttribute("empId");
 		String name = request.getParameter("nome");
 		String cognome = request.getParameter("cognome");
 		String email = request.getParameter("email");
@@ -66,12 +67,15 @@ public class SearchUsers extends HttpServlet {
 		DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	    LocalDate localDate = LocalDate.parse(data, inputFormatter);
 	    LocalDateTime localDateTime = localDate.atStartOfDay();
+	    
 
 	    DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 	     formattedDate = localDateTime.format(outputFormatter);
 	    }
 		List<EmployeeDTO> listaRicercati=  generalRepo.selectGeneric(id, name, cognome, email, nomeDipartimento, localita, jobTitle,formattedDate);
+		List<EmployeeDTO> listaPerDipartimento = generalRepo.selectGenericByManager(empId, id, name, cognome, email, jobTitle, formattedDate);
 		request.setAttribute("listaRicercati", listaRicercati);
+		request.setAttribute("listaDipartimentoManager", listaPerDipartimento);
 		request.getRequestDispatcher("/JSP/listadipendenti.jsp").forward(request, response);
 	}
 

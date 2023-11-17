@@ -3,6 +3,14 @@ package com.advanciastage.gestionalehr.entity;
 public class EmployeeDTO {
 
 	private Long id;
+	public EmployeeDTO( String name,Long id, String lastName, String jobTitle) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.lastName = lastName;
+		this.jobTitle = jobTitle;
+	}
+
 	private String name;
 	private String lastName;
 	private String email;

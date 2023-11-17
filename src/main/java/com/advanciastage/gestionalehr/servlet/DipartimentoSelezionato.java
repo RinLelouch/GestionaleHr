@@ -11,20 +11,23 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.advanciastage.gestionalehr.entity.DepartmentDTO;
+import com.advanciastage.gestionalehr.entity.EmployeeDTO;
 import com.advanciastage.gestionalehr.repository.DepartmentRepository;
-import com.mysql.cj.util.StringUtils;
+
+import com.advanciastage.gestionalehr.repository.GeneralRepository;
 
 /**
- * Servlet implementation class SearchDepartmentsServlet
+ * Servlet implementation class DipartimentoSelezionato
  */
-@WebServlet("/searchdepartments")
-public class SearchDepartmentsServlet extends HttpServlet {
+@WebServlet("/dipartimentoselezionato")
+public class DipartimentoSelezionato extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       DepartmentRepository depRepo = new DepartmentRepository();
+      DepartmentRepository depRepo = new DepartmentRepository();
+      GeneralRepository genRepo = new GeneralRepository();
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchDepartmentsServlet() {
+    public DipartimentoSelezionato() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,17 +37,13 @@ public class SearchDepartmentsServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession();
-		String idString= request.getParameter("id");
-		String idLocString = request.getParameter("località");
-		Long id= StringUtils.isNullOrEmpty(idString) ? 0L : Long.parseLong(idString);
-		Long idLocalita= StringUtils.isNullOrEmpty(idLocString) ? 0L : Long.parseLong(idLocString);
-		String dipartimento = request.getParameter("nomeDipartimento");
-		
-		
-		List<DepartmentDTO> departmentsResult=depRepo.departmentSearchDinamic(id, dipartimento, idLocalita);
-		request.setAttribute("departmentsResult", departmentsResult);
-		request.getRequestDispatcher("/JSP/listadipartimenti.jsp").forward(request, response);
+		HttpSession session = request.getSession(false);
+		Long id = Long.parseLong(request.getParameter("dipartimento"));
+		DepartmentDTO dto =depRepo.findDepartment(id);
+		List<EmployeeDTO> empList=genRepo.cercaEmpInDep(id);
+		request.setAttribute("dip",dto);
+		request.setAttribute("emp", empList);
+		request.getRequestDispatcher("/JSP/dipartimentoselezionato.jsp").forward(request, response);
 	}
 
 	/**

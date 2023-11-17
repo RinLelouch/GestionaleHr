@@ -20,7 +20,7 @@ public class Service {
 	}
 
 	public int checkStatus(Employee emp) {
-		List<String> managers=employeeRepo.selectAllManagers();
+		List<String> managers=employeeRepo.selectAllManagersEmail();
 
 		if (emp.getJobId().equals("AD_PRES") || emp.getJobId().equals("AD_VP")) {
 			return 1;

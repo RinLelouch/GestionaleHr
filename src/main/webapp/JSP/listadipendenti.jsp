@@ -12,7 +12,8 @@
 </head>
 <body>
 	<c:if test="${autorizzato == true }">
-		<h2>Dipendenti</h2>
+	<c:if test="${ALTO == true }">
+		<h2>Dipendenti Alto</h2>
 		<table>
 			<tr>
 				<th>ID Dipendente</th>
@@ -34,7 +35,32 @@
 				</tr>
 			</c:forEach>
 		</table>
+</c:if>
+<c:if test="${MEDIO == true }">
+<h2>Dipendenti Medio</h2>
+		<table>
+			<tr>
+				<th>ID Dipendente</th>
+				<th>Nome</th>
+				<th>Cognome</th>
+				<th>Email</th>
+				<th>Dettagli Utenti</th>
+			</tr>
+			<c:forEach var="gen" items="${listaDipartimentoManager}">
+				<tr>
+					<td>${gen.getId()}</td>
+					<td>${gen.getName()}</td>
+					<td>${gen.getLastName()}</td>
+					<td>${gen.getEmail()}</td>
+					<td><a
+						href="http://localhost:8080/gestionalehr/utenteselezionato?id_dipendente=${gen.getId()}">
+							> Vai ai dettagli dell'utente</a></td>
 
+				</tr>
+			</c:forEach>
+		</table>
+
+</c:if>
 	</c:if>
 </body>
 </html>

@@ -18,7 +18,7 @@ public class Employee {
 	}
 
 	public Employee(Long employeeId, String firstName, String lastName, String email, String phoneNumber,
-			LocalDate hireDate, String jobId, long salary, Double commissionPct, Long managerId, long departmentId) {
+			LocalDate hireDate, String jobId, long salary, Double commissionPct, Long managerId, Long departmentId) {
 		super();
 		this.employeeId = employeeId;
 		this.firstName = firstName;
@@ -55,7 +55,7 @@ public class Employee {
 	@Column(name = "manager_id")
 	private Long managerId;
 	@Column(name = "department_id")
-	private long departmentId;
+	private Long departmentId;
 
 	public Long getEmployeeId() {
 		return employeeId;
@@ -137,11 +137,11 @@ public class Employee {
 		this.managerId = managerId;
 	}
 
-	public long getDepartmentId() {
+	public Long getDepartmentId() {
 		return departmentId;
 	}
 
-	public void setDepartmentId(long departmentId) {
+	public void setDepartmentId(Long departmentId) {
 		this.departmentId = departmentId;
 	}
 	

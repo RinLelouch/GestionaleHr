@@ -8,14 +8,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-<p>Ecco i dati del dipendente ${dipendente.getName()}:
-	<p>Username: ${dipendente.getName()}</p>
-	<p>Nome: ${dipendente.getLastName()}</p>
-	<p>Cognome: ${dipendente.getEmail()}</p>
-	<p>PhoneNumber: ${dipendente.getPhoneNumber()}</p>
-	<p>Salario: ${dipendente.getSalary()}</p>
-	<p>Nome Dipartimento: ${dipendente.getNomeDipartimento()}</p>
-	<p>Nome Manager: ${dipendente.getNomeManager()}</p>
-	<p>Job Title: ${dipendente.getJobTitle()}</p>
+<p>Ecco i dati del dipendente ${dipendente.getName()} ${manager.getName()} :
+	<p>Nome: ${dipendente.getName()} ${manager.getName()}</p>
+	<p>Cognome: ${dipendente.getLastName()} ${manager.getLastName()}</p>
+	<p>Email: ${dipendente.getEmail()} ${manager.getEmail()}</p>
+	<p>PhoneNumber: ${dipendente.getPhoneNumber()} ${manager.getPhoneNumber()}<p>
+	<p>Salario: ${dipendente.getSalary()} ${manager.getSalary()}</p>
+	<p>Nome Dipartimento: ${dipendente.getNomeDipartimento()} ${manager.getNomeDipartimento()}</p>
+	<p>Nome Manager: ${dipendente.getNomeManager()} ${manager.getNomeManager()}</p>
+	<p>Job Title: ${dipendente.getJobTitle()} ${manager.getJobTitle()}</p>
 </body>
 </html>

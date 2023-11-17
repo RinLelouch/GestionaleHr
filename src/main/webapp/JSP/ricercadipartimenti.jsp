@@ -20,9 +20,10 @@
 		</select> <br /> <select name="località">
 			<option value="">Scegli la località</option>
 			<c:forEach var="location" items="${locations}">
-				<option value="${location.getCountryId()}">${location.getCity()}</option>
+				<option value="${location.getLocationId()}">${location.getCountryId()}</option>
 			</c:forEach>
 		</select> <br />
+		<input type="submit" value="Ricerca">
 </form>
 </body>
 </html>

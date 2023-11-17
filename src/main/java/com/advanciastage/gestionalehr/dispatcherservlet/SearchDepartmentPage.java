@@ -35,7 +35,13 @@ public class SearchDepartmentPage extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		HttpSession session = request.getSession();
+		List<Department> departments=generalRepo.selectAllDepartments();
+		List<Location> locations=generalRepo.selectAllLocations();
+		request.setAttribute("departments", departments);
+		request.setAttribute("locations", locations);
+		request.getRequestDispatcher("/JSP/ricercadipartimenti.jsp").forward(request, response);
+		
 	}
 
 	/**
@@ -43,12 +49,7 @@ public class SearchDepartmentPage extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession();
-		List<Department> departments=generalRepo.selectAllDepartments();
-		List<Location> locations=generalRepo.selectAllLocations();
-		request.setAttribute("departments", departments);
-		request.setAttribute("locations", locations);
-		request.getRequestDispatcher("/JSP/ricercadipartimenti.jsp").forward(request, response);
+		
 	}
 
 }
