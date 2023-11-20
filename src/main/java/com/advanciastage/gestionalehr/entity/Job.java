@@ -14,9 +14,9 @@ public class Job {
 	@Column(name = "job_title")
 	private String jobTitle;
 	@Column(name = "min_salary")
-	private long minSalary;
+	private Long minSalary;
 	@Column(name = "max_salary")
-	private long maxSalary;
+	private Long maxSalary;
 
 	public String getJobId() {
 		return jobId;
@@ -31,7 +31,7 @@ public class Job {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Job(String jobId, String jobTitle, long minSalary, long maxSalary) {
+	public Job(String jobId, String jobTitle, Long minSalary, Long maxSalary) {
 		super();
 		this.jobId = jobId;
 		this.jobTitle = jobTitle;
@@ -47,19 +47,19 @@ public class Job {
 		this.jobTitle = jobTitle;
 	}
 
-	public long getMinSalary() {
+	public Long getMinSalary() {
 		return minSalary;
 	}
 
-	public void setMinSalary(long minSalary) {
+	public void setMinSalary(Long minSalary) {
 		this.minSalary = minSalary;
 	}
 
-	public long getMaxSalary() {
+	public Long getMaxSalary() {
 		return maxSalary;
 	}
 
-	public void setMaxSalary(long maxSalary) {
+	public void setMaxSalary(Long maxSalary) {
 		this.maxSalary = maxSalary;
 	}
 }

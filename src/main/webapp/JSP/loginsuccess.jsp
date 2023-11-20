@@ -20,11 +20,17 @@
 			<form action="/gestionalehr/searchdepartmentpage" method="get">
 				<input type="submit" value="Ricerca Dipartimenti">
 			</form>
+			<form action="/gestionalehr/aggiornamentosalari">
+			<input type="submit" value="Aggiorna Salari">
+			</form>
 		</c:if>
 
 		<c:if test="${MEDIO == true}">
 			<form action="/gestionalehr/searchuserpage" method="post">
 				<input type="submit" value="Ricerca Dipendenti">
+			</form>
+			<form action="/gestionalehr/aggiornamentosalari">
+			<input type="submit" value="Aggiorna Salari">
 			</form>
 		</c:if>
 		<form action="/gestionalehr/datipersonali" method="post">
