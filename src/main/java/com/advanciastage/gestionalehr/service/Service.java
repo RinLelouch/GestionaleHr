@@ -1,6 +1,7 @@
 package com.advanciastage.gestionalehr.service;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 import com.advanciastage.gestionalehr.entity.Employee;
 import com.advanciastage.gestionalehr.entity.Job;
@@ -10,7 +11,15 @@ import com.advanciastage.gestionalehr.repository.JobRepository;
 public class Service {
 	private EmployeeRepository employeeRepo = new EmployeeRepository();
 	private JobRepository jobRepo = new JobRepository();
-
+	
+	
+	public boolean controlloNumeroTelefono(String numero) {
+		String regex= "^[0-9]+(\\.[0-9]+)*$";
+		return Pattern.matches(regex, numero);		
+	}
+	
+	
+	
 	public boolean checkLogin(Employee emp, String password) {
 
 		String phone = emp.getPhoneNumber().replace(".", "");

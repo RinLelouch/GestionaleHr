@@ -23,6 +23,9 @@
 			<form action="/gestionalehr/aggiornamentosalari">
 			<input type="submit" value="Aggiorna Salari">
 			</form>
+			<form action ="/gestionalehr/inseriscidipendente">
+			<input type="submit" value="Aggiungi Dipendente">
+			</form>
 		</c:if>
 
 		<c:if test="${MEDIO == true}">
@@ -31,6 +34,9 @@
 			</form>
 			<form action="/gestionalehr/aggiornamentosalari">
 			<input type="submit" value="Aggiorna Salari">
+			</form>
+			<form action ="/gestionalehr/inseriscidipendente">
+			<input type="submit" value="Aggiungi Dipendente">
 			</form>
 		</c:if>
 		<form action="/gestionalehr/datipersonali" method="post">

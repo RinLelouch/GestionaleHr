@@ -7,14 +7,31 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
-
+import com.advanciastage.gestionalehr.entity.Department;
 import com.advanciastage.gestionalehr.entity.DepartmentDTO;
 
 import com.advanciastage.gestionalehr.util.JPAUtil;
 import com.mysql.cj.util.StringUtils;
 
 public class DepartmentRepository {
-	
+	public List<Department> selectAllDepartmentsManagerNotNull() {
+
+		EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
+		try {
+			entityManager.getTransaction().begin();
+
+			Query query = entityManager.createQuery("FROM Department WHERE managerId !=null");
+			@SuppressWarnings("unchecked")
+			List<Department> departments = (List<Department>) query.getResultList();
+
+			return departments;
+		} catch (NoResultException e) {
+			return null;
+		} finally {
+			entityManager.getTransaction().commit();
+			entityManager.close();
+		}
+		}
 	
 	public List<DepartmentDTO> departmentSearchDinamic(Long id, String departmentName, Long idLocalita){
 		
@@ -77,5 +94,27 @@ public class DepartmentRepository {
 	}finally {
 		entityManager.close();
 	}
-}
 	}
+	
+	public Department Department(Long id){
+		EntityManager entityManager= JPAUtil.getEntityManagerFactory().createEntityManager();
+		try {
+		entityManager.getTransaction().begin();
+		Query query= entityManager.createQuery(
+				 "SELECT d FROM Department d "
+				+ " WHERE d.departmentId= :id");
+		query.setParameter("id",id);
+		
+		Department department = (Department) query.getSingleResult();
+		
+		return department;
+	}
+	catch(NoResultException e) {
+        return null;
+		
+	}finally {
+		entityManager.close();
+	}
+}
+	
+}

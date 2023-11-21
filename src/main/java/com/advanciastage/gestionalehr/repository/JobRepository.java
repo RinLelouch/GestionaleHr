@@ -11,6 +11,26 @@ import com.advanciastage.gestionalehr.util.JPAUtil;
 
 public class JobRepository {
 	
+	public Long getMinSalary(String job) {
+		
+		EntityManager entityManager=JPAUtil.getEntityManagerFactory().createEntityManager();
+		try {
+			entityManager.getTransaction().begin();
+			
+			Query query= entityManager.createQuery("SELECT j.minSalary FROM Job j WHERE j.jobId= :job");
+			query.setParameter("job", job);
+			Long salary = (Long) query.getSingleResult();
+			return salary;
+	
+			
+		}catch(NoResultException e) {
+			return null;
+		}finally {
+			entityManager.close();
+		}
+		
+	}
+	
 	public void salaryChange( Long id, Long salario) {
 		EntityManager entityManager= JPAUtil.getEntityManagerFactory().createEntityManager();
 		try {
@@ -27,6 +47,19 @@ public class JobRepository {
 		}
 	}
 	
+	public List<Job> selectJobsByDepNotManagers(Long id){
+		EntityManager entityManager= JPAUtil.getEntityManagerFactory().createEntityManager();
+		try {
+		Query query = entityManager.createQuery("SELECT DISTINCT j FROM Employee e, Job j WHERE e.jobId=j.jobId AND e.departmentId=:id AND e.jobId NOT LIKE '%MAN%'");
+		query.setParameter("id", id);
+		List<Job> jobs = query.getResultList();
+		return jobs;}
+		catch(NoResultException e) {
+			return null;
+		}finally {
+			entityManager.close();
+		}
+	}
 	
 	public List<Job> selectJobsByManager(Long id){
 		EntityManager entityManager= JPAUtil.getEntityManagerFactory().createEntityManager();

@@ -1,5 +1,8 @@
 package com.advanciastage.gestionalehr.repository;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -11,6 +14,37 @@ import com.advanciastage.gestionalehr.entity.EmployeeDTO;
 import com.advanciastage.gestionalehr.util.JPAUtil;
 
 public class EmployeeRepository {
+	
+	
+	public void insertEmployee(String nome, String cognome,String numeroTelefono,Long departmentId,Long managerId,String jobId,Long salary) {
+		EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
+		try {
+			entityManager.getTransaction().begin();
+			Employee emp = new Employee();
+			
+			LocalDateTime date=  LocalDateTime.now();
+			
+			emp.setFirstName(nome);
+			emp.setLastName(cognome);
+			char primaLettera=nome.charAt(0);
+			String email= primaLettera+cognome.toUpperCase();
+			emp.setHireDate(date);
+			emp.setEmail(email);
+			emp.setPhoneNumber(numeroTelefono);
+			emp.setDepartmentId(departmentId);
+			emp.setManagerId(managerId);
+			emp.setCommissionPct(null);
+			emp.setJobId(jobId);
+			emp.setSalary(salary);
+			
+			
+			entityManager.persist(emp);
+			entityManager.getTransaction().commit();
+		}finally {
+			entityManager.close();
+		}
+	}
+	
 	public List<Employee> findEmployeeByJobId(String id){
 		EntityManager entityManager= JPAUtil.getEntityManagerFactory().createEntityManager();
 		try {

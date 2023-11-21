@@ -1,11 +1,15 @@
 package com.advanciastage.gestionalehr.entity;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -18,7 +22,7 @@ public class Employee {
 	}
 
 	public Employee(Long employeeId, String firstName, String lastName, String email, String phoneNumber,
-			LocalDate hireDate, String jobId, long salary, Double commissionPct, Long managerId, Long departmentId) {
+			LocalDateTime hireDate, String jobId, long salary, Double commissionPct, Long managerId, Long departmentId) {
 		super();
 		this.employeeId = employeeId;
 		this.firstName = firstName;
@@ -34,6 +38,8 @@ public class Employee {
 	}
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "EMPLOYEES_SEQ")
+	@SequenceGenerator(name = "EMPLOYEES_SEQ", sequenceName = "EMPLOYEES_SEQ", allocationSize = 1)
 	@Column(name = "employee_id")
 	private Long employeeId;
 	@Column(name = "first_name")
@@ -45,7 +51,7 @@ public class Employee {
 	@Column(name = "phone_number")
 	private String phoneNumber;
 	@Column(name = "hire_date")
-	private LocalDate hireDate;
+	private LocalDateTime hireDate;
 	@Column(name = "job_id")
 	private String jobId;
 	@Column(name = "salary")
@@ -97,11 +103,11 @@ public class Employee {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public LocalDate getHireDate() {
+	public LocalDateTime getHireDate() {
 		return hireDate;
 	}
 
-	public void setHireDate(LocalDate hireDate) {
+	public void setHireDate(LocalDateTime hireDate) {
 		this.hireDate = hireDate;
 	}
 
